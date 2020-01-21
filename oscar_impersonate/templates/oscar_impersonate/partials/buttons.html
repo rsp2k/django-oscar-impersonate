@@ -20,6 +20,6 @@ Variables
 {% else %}
     {% if customer.pk != request.user.pk %}
         {# display button “Log as” on other users than us #}
-        <a href="{% url 'impersonate-start' customer.pk %}" class="{{ btn_start_css_class|default:"btn btn-info" }}">{% trans "Log as" %}</a>
+        <a href="{% url 'impersonate-start' customer.pk %}" class="{{ btn_start_css_class|default:"btn btn-info" }}">{% trans "Impersonate" %} {{ customer.email }}</a>
     {% endif %}
 {% endif %}
