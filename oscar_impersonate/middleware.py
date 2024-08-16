@@ -3,7 +3,13 @@ import re
 
 from django.conf import settings
 from django.template.loader import render_to_string
-from django.utils.encoding import force_text
+try:
+    from django.utils.encoding import force_str
+except ImportError:
+    # For django < 4
+    from django.utils.encoding import force_text
+    force_str = force_text
+
 
 from impersonate.middleware import ImpersonateMiddleware
 
@@ -35,7 +41,7 @@ class OscarImpersonateMiddleware(ImpersonateMiddleware):
             """
             return response
 
-        html = force_text(response.content, encoding=settings.DEFAULT_CHARSET)
+        html = force_str(response.content)
 
         matches = self.body_open_tag_pattern.findall(html)
 

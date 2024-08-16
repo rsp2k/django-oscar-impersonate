@@ -1,4 +1,4 @@
-VERSION = (0, 1, 3, 'final', 0)
+VERSION = (0, 2, 0, 'final', 0)
 
 # taken from django-impersonate (which took from django-registration)
 
