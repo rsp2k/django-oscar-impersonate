@@ -15,11 +15,15 @@ Variables
     {# Pending impersonate session #}
     {% if customer.pk == request.user.pk %}
         {# This is the user we'are impersonating #}
-        <a href="{% url 'impersonate-stop' %}" class="{{ btn_stop_css_class|default:"btn btn-inverse" }}">{% trans "Stop impersonation" %}</a>
+        <a href="{% url 'impersonate-stop' %}" class="{{ btn_stop_css_class|default:"btn btn-inverse" }}">
+            {% trans "Stop impersonation" %}
+        </a>
     {% endif %}
 {% else %}
     {% if customer.pk != request.user.pk %}
-        {# display button “Log as” on other users than us #}
-        <a href="{% url 'impersonate-start' customer.pk %}" class="{{ btn_start_css_class|default:"btn btn-info" }}">{% trans "Impersonate" %} {{ customer.email }}</a>
+        {# display button "Impersonate" on other users than us #}
+        <a href="{% url 'impersonate-start' customer.pk %}" class="{{ btn_start_css_class|default:"btn btn-info" }}">
+            {% trans "Impersonate" %} {{ customer.email }}
+        </a>
     {% endif %}
 {% endif %}
